@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            color: #667eea;
+            margin: 25px 0 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: #e74c3c;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #5365c7;
+        }
+
+        button:focus-visible, a:focus-visible {
+            outline: 3px solid #333;
+            outline-offset: 3px;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot {
+            text-align: right;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>User Account</h2>
+        <p class="subtitle">Registration, Login & Profile Setup</p>
+
+        <form action="#" method="post">
+
+            <div class="section">
+
+                <h3>Login</h3>
+
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" name="login_email" placeholder="Enter your email" required>
+
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="login_password" placeholder="Enter password" minlength="8" required>
+
+                <div class="forgot">
+                    <a href="#forgot-password">Forgot Password?</a>
+                </div>
+
+                <button type="submit">Login</button>
+
+            </div>
+
+        </form>
+
+        <form action="#" method="post">
+
+            <div class="section">
+
+                <h3>Registration</h3>
+
+                <label for="reg-name">Full Name</label>
+                <input type="text" id="reg-name" name="name" placeholder="Enter your full name" autocomplete="name" required>
+
+                <label for="reg-email">Email Address</label>
+                <input type="email" id="reg-email" name="email" placeholder="Enter your email" autocomplete="email" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter 10 digit number" pattern="[0-9]{10}" required>
+
+                <label for="reg-password">Password</label>
+                <input type="password" id="reg-password" name="password" placeholder="Create password" minlength="8" autocomplete="new-password" required>
+
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm password" minlength="8" autocomplete="new-password" required>
+
+                <button type="submit">Register</button>
+
+            </div>
+
+        </form>
+
+        <form action="#" method="post" id="forgot-password">
+
+            <div class="section">
+
+                <h3>Password Recovery</h3>
+
+                <label for="recovery-email">Registered Email</label>
+                <input type="email" id="recovery-email" name="recovery_email" placeholder="Enter registered email" required>
+
+                <button type="submit">Reset Password</button>
+
+            </div>
+
+        </form>
+
+        <form action="#" method="post">
+
+            <div class="section">
+
+                <h3>Profile Setup</h3>
+
+                <label for="profile-name">Full Name</label>
+                <input type="text" id="profile-name" name="profile_name" placeholder="Enter full name" required>
+
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+
+                <label for="address">Address</label>
+                <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+
+                <label for="photo">Profile Picture</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+
+                <button type="submit">Save Profile</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>
