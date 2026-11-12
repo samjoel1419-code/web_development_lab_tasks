@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Booking</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f3f7fc;
+            color: #333;
+        }
+
+        header {
+            background: #087fbd;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #d8f0ff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px;
+            background: linear-gradient(120deg, #087fbd, #42b8df);
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 17px;
+        }
+
+        .section {
+            padding: 45px 8%;
+        }
+
+        .section h2 {
+            text-align: center;
+            color: #087fbd;
+            margin-bottom: 30px;
+        }
+
+        .doctor-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .doctor-card {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .doctor-icon {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: #dff3fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px;
+            font-size: 45px;
+        }
+
+        .doctor-card h3 {
+            color: #087fbd;
+            margin-bottom: 10px;
+        }
+
+        .doctor-card p {
+            margin: 8px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .doctor-card button {
+            margin-top: 15px;
+            padding: 11px 20px;
+            background: #087fbd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .doctor-card button:hover {
+            background: #05618f;
+        }
+
+        .booking {
+            background: white;
+            max-width: 750px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        }
+
+        .booking h3 {
+            color: #087fbd;
+            margin: 25px 0 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #087fbd;
+            box-shadow: 0 0 5px rgba(8,127,189,0.3);
+        }
+
+        .slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .slots label {
+            border: 1px solid #087fbd;
+            color: #087fbd;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .slots input {
+            width: auto;
+            margin: 0 5px 0 0;
+        }
+
+        .slots label:has(input:checked) {
+            background: #087fbd;
+            color: white;
+        }
+
+        .booking button {
+            width: 100%;
+            padding: 14px;
+            background: #087fbd;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .booking button:hover {
+            background: #05618f;
+        }
+
+        footer {
+            background: #075477;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media(max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 8px;
+                display: inline-block;
+            }
+
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .booking {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🏥 MediCare</h1>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#booking">Book Appointment</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h2>Find the Best Doctors</h2>
+        <p>Book your doctor appointment easily and get the best healthcare.</p>
+    </section>
+
+    <section class="section" id="doctors">
+        <h2>Our Specialist Doctors</h2>
+
+        <div class="doctor-container">
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👨‍⚕️</div>
+                <h3>Dr. Rahul Sharma</h3>
+                <p>Cardiologist</p>
+                <p>Experience: 10 Years</p>
+                <p>Timing: 9 AM - 1 PM</p>
+                <p>Consultation: ₹500</p>
+                <button type="button" onclick="location.href='#booking'">Book Appointment</button>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👩‍⚕️</div>
+                <h3>Dr. Priya Reddy</h3>
+                <p>Dermatologist</p>
+                <p>Experience: 8 Years</p>
+                <p>Timing: 10 AM - 2 PM</p>
+                <p>Consultation: ₹400</p>
+                <button type="button" onclick="location.href='#booking'">Book Appointment</button>
+            </div>
+
+            <div class="doctor-card">
+                <div class="doctor-icon">👨‍⚕️</div>
+                <h3>Dr. Arjun Kumar</h3>
+                <p>Neurologist</p>
+                <p>Experience: 12 Years</p>
+                <p>Timing: 4 PM - 8 PM</p>
+                <p>Consultation: ₹600</p>
+                <button type="button" onclick="location.href='#booking'">Book Appointment</button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="booking">
+        <h2>Book Your Appointment</h2>
+
+        <div class="booking">
+
+            <form action="#" method="post">
+
+                <h3>Patient Information</h3>
+
+                <label for="name">Patient Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter full name" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter email address" required>
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter 10 digit mobile number" pattern="[0-9]{10}" required>
+
+                <label for="age">Patient Age</label>
+                <input type="number" id="age" name="age" min="1" max="120" placeholder="Enter your age" required>
+
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+
+                <h3>Select Doctor</h3>
+
+                <label for="doctor">Choose Specialist Doctor</label>
+                <select id="doctor" name="doctor" required>
+                    <option value="">Select Doctor</option>
+                    <option value="rahul">Dr. Rahul Sharma - Cardiologist</option>
+                    <option value="priya">Dr. Priya Reddy - Dermatologist</option>
+                    <option value="arjun">Dr. Arjun Kumar - Neurologist</option>
+                </select>
+
+                <label for="date">Appointment Date</label>
+                <input type="date" id="date" name="date" required>
+
+                <h3>Available Appointment Slots</h3>
+
+                <div class="slots">
+                    <label>
+                        <input type="radio" name="slot" value="9:00 AM" required>
+                        9:00 AM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="slot" value="10:00 AM">
+                        10:00 AM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="slot" value="11:00 AM">
+                        11:00 AM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="slot" value="12:00 PM">
+                        12:00 PM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="slot" value="4:00 PM">
+                        4:00 PM
+                    </label>
+
+                    <label>
+                        <input type="radio" name="slot" value="5:00 PM">
+                        5:00 PM
+                    </label>
+                </div>
+
+                <label for="reason">Reason for Appointment</label>
+                <textarea id="reason" name="reason" rows="4" placeholder="Describe your health concern"></textarea>
+
+                <button type="submit">Confirm Appointment</button>
+
+            </form>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>© 2026 MediCare Hospital | All Rights Reserved</p>
+        <p>Contact: support@medicare.com | Phone: 9876543210</p>
+    </footer>
+
+</body>
+</html>
